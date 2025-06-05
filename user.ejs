@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        table, tr,th, td{
+            border: 2px solid black;
+        }
+        .red{
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Welcome to home page.</h2>
+    <h3>Total Users in Database: <%= count %></h3>
+
+    <form method="get" action="/user/new">
+        <Button>Add New User</Button>
+    </form>
+
+    <br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>EMAIL</th>
+        </tr>
+        <%for(user of users){%>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td>
+                <form method="get" action="/user/<%=user.id%>/edit">
+                    <button>Edit User</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="/user/<%=user.id%>/delete">
+                    <button class="red">Delete User</button>
+                </form>
+            </td>
+        </tr>
+        <%}%>
+    </table>
+</body>
+
+</html>
